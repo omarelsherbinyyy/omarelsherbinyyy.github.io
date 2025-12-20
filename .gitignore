@@ -1,0 +1,6 @@
+Thumbs.db
+.vscode/
+.idea/
+.env
+*.env
+node_modules/
