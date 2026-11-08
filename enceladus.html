@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ENCORE: Mission to Enceladus | Omar Elsherbiny</title>
+  <meta name="description" content="Interactive overview of ENCORE, a candidate ESA L-Class mission to Enceladus using water electrolysis propulsion and in-situ refuelling. Master's thesis by Omar Elsherbiny, TUM.">
+  <meta name="google-site-verification" content="ChEyM9FFLklDDXkz-xQbSa1o5CeA_1fv7jT6FsTr4jE">
+  <meta property="og:title" content="ENCORE: Mission to Enceladus | Omar Elsherbiny">
+  <meta property="og:description" content="Interactive overview of ENCORE, a candidate ESA L-Class mission to Enceladus using water electrolysis propulsion and in-situ refuelling. Master's thesis by Omar Elsherbiny, TUM.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omarelsherbinyyy.github.io/enceladus.html">
+  <meta property="og:image" content="https://omarelsherbinyyy.github.io/assets/img/encore-cad.webp">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23eef2f4' stroke='%230f2233' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%230f2233' stroke-width='3' transform='rotate(-25 32 32)'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23e8590c'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/fonts-v3.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/v3.css">
+  <link rel="stylesheet" href="assets/css/v4.css">
+  <link rel="stylesheet" href="assets/css/v5.css">
+  <link rel="stylesheet" href="assets/css/v5-frame.css">
+</head>
+<body>
+  <nav class="nav" aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="index.html">Omar Elsherbiny<span>.</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="enceladus.html" aria-current="page">ENCORE</a></li>
+        <li><a href="papers.html">Papers</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="path.html">Path</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main id="main">
+
+  <header class="section" style="padding-bottom:40px">
+    <div class="wrap">
+      <div class="mission-head">
+      <div>
+      <span class="eyebrow">Master's thesis &middot; TUM Chair of Space Mobility and Propulsion &middot; March 2026</span>
+      <h1>ENCORE: a mission to Enceladus that makes its own propellant</h1>
+      <p class="lead">ENCORE (ENceladus Chemical Observation &amp; Resource Extraction) is a candidate ESA L-Class mission within Voyage 2050, designed to return definitive evidence of life from Saturn's moon Enceladus. An orbiter and a hopping lander harvest Enceladus ice and electrolyse it into propellant, which makes extended surface operations and even a sample return possible.</p>
+      </div>
+      <img class="badge" src="assets/img/encore-badge.webp" alt="ENCORE mission badge: Saturn and Enceladus plumes, Enceladus Chemical Observation &amp; Resource Extraction">
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>~7.5 km/s</b><span>total mission &Delta;v</span></div>
+        <div class="stat"><b>0.41</b><span>propellant mass fraction</span></div>
+        <div class="stat"><b>5,512 kg</b><span>launch mass on Ariane 64</span></div>
+        <div class="stat"><b>~650 m/s</b><span>saved by Titan resonant capture</span></div>
+        <div class="stat"><b>~250 days</b><span>to escape Saturn for sample return</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section-tight" id="viewer">
+    <div class="wrap">
+      <h2>Fly the mission</h2>
+      <p class="muted" style="max-width:760px">Press play or drag the timeline. The budget panel follows the &Delta;v and surplus oxygen from the thesis; the orbits and timing are a schematic of the sequence, not a propagated trajectory.</p>
+      <div class="viewer reveal in">
+        <div class="viewer-stage">
+          <canvas id="mv-canvas" aria-label="Animated schematic of the ENCORE trajectory"></canvas>
+          <div class="viewer-tag warp" id="mv-warp" aria-live="off">Time warp</div>
+          <div class="viewer-legend">
+            <span><i style="background:#1f5f99"></i>Coast</span>
+            <span><i style="background:#6a4fc9"></i>Electric thrust</span>
+            <span><i style="background:#e8590c;height:7px;width:7px;border-radius:50%"></i>Chemical burn</span>
+            <span>Schematic, not to scale</span>
+          </div>
+        </div>
+        <div class="viewer-side">
+          <div>
+            <div class="phase-label" id="mv-phase-label">Phase 1</div>
+            <h3 class="phase-title" id="mv-phase-title">Launch</h3>
+          </div>
+          <p class="phase-text" id="mv-phase-text" aria-live="polite"></p>
+          <div class="readouts">
+            <div class="readout"><span>Chemical &Delta;v</span><b id="mv-chem">0 m/s</b></div>
+            <div class="readout"><span>Electric &Delta;v</span><b id="mv-ep">0 m/s</b></div>
+            <div class="readout"><span>Surplus O&#8322;</span><b id="mv-o2">242 kg</b></div>
+          </div>
+          <div class="chart-box">
+            <div class="chart-title"><span>Cumulative &Delta;v</span><span><span style="color:#e8590c">&#9632;</span> chemical &nbsp;<span style="color:#6a4fc9">&#9632;</span> electric</span></div>
+            <canvas id="mv-chart" aria-hidden="true"></canvas>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="btn" id="mv-play" type="button" aria-label="Play">&#9654; Play</button>
+          <input type="range" id="mv-slider" min="0" max="1000" value="0" aria-label="Mission timeline">
+          <span class="t"><span id="mv-time">T+ 0.0 yr</span><span class="warp-m" id="mv-warp-m"></span></span>
+        </div>
+        <div class="phase-steps" id="mv-steps"></div>
+      </div>
+      <p class="small muted" style="margin-top:12px">EVVES baseline trajectory adapted from Fantino et al. (2023). Budget values are from an earlier design iteration in the thesis (electric propulsion at I<sub>sp</sub> 3000 s with a krypton neutraliser); later iterations assume about 1500 s.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="prose reveal">
+        <span class="eyebrow">Why Enceladus</span>
+        <h2>An ocean that sprays itself into space</h2>
+        <p>On a close flyby of Enceladus' south pole, Cassini found plumes of water vapour and ice erupting from four parallel fissures, the "tiger stripes". Beneath the ice sits a global liquid ocean, with hydrothermal activity and complex organic molecules: liquid water, an energy source and the right chemistry.</p>
+        <p>No spacecraft has ever landed there. ENCORE's science goals centre on biosignature detection, habitability, surface mapping, interior structure and plume dynamics.</p>
+      </div>
+      <figure class="figure reveal" style="margin:0"><img src="assets/img/enceladus-plumes.webp" alt="Water plumes erupting from the south pole of Enceladus" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap split">
+      <figure class="figure reveal white" style="margin:0;max-width:340px;justify-self:center"><img src="assets/img/wep-schematic.webp" alt="Schematic of a water electrolysis propulsion system" loading="lazy"><figcaption>Water electrolysis propulsion: water is split into H&#8322; and O&#8322; on board and burned in a thruster.</figcaption></figure>
+      <div class="prose reveal">
+        <span class="eyebrow">Propulsion</span>
+        <h2>Water in, two kinds of thrust out</h2>
+        <p>Water is dense, benign and easy to store. Solar power runs an electrolyser that splits it into hydrogen and oxygen, which fill high-pressure buffer tanks before each burn. The tank capacity caps each burn, so large manoeuvres are split into a series of smaller ones.</p>
+        <p>The chemical engine burns fuel-rich, while electrolysis always yields oxygen and hydrogen at 8:1 by mass. The leftover oxygen is not wasted: it becomes reaction mass for electric thrusters. That makes ENCORE a hybrid chemical-electric mission, with high thrust where it matters and high efficiency for the long cruise.</p>
+        <p>Of the electrolyser technologies compared, capillary-fed electrolysis suits the mission environment best but still needs development, so low-temperature electrolysis is the current baseline.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="prose reveal">
+        <span class="eyebrow">Architecture</span>
+        <h2>An orbiter and a lander that hops</h2>
+        <p>The trade study rated each architecture by how far it advances science beyond Cassini-Huygens, alongside its ability to use local resources and to return samples. A separate orbiter and lander scored highest because the lander can refuel from the ice and hop between sites on the South Polar Terrain, while the orbiter maps safe landing zones and relays data to Earth.</p>
+      </div>
+      <figure class="figure reveal"><img src="assets/img/encore-conops.webp" alt="ENCORE circular mission concept: lander collects water, ascends to dock with the orbiter, refuels by electrolysis and descends again" loading="lazy"><figcaption>ENCORE's circular concept: collect water on the surface, dock and electrolyse, then land again at a new site.</figcaption></figure>
+      <figure class="figure reveal"><img src="assets/img/encore-plume-flythrough.webp" alt="Illustration of the ENCORE lander flying through an Enceladus plume with Saturn in the background" loading="lazy"><figcaption>The lander flying through a plume. AI-generated visualisation from the thesis.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="callout reveal">
+        <b>Thesis:</b> <i>Design and Analysis of an ESA L-Class Mission to Enceladus and the Saturnian System</i>, Technical University of Munich, March 2026. Supervised by Prof. Dr.-Ing. Chiara Manfletti and Fabian Riegelsberger, M.Sc.
+        The concept was presented at the 5th Symposium on Space Educational Activities (April 2026) and in two papers at IAC 2026 in Antalya. The full thesis is available on request.
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="mailto:omarshoukri@gmail.com?subject=ENCORE%20thesis">Request the thesis</a>
+        <a class="btn" href="papers.html">ENCORE papers (SSEA, IAC 2026)</a>
+        <a class="btn" href="https://www.asg.ed.tum.de/en/spm/" target="_blank" rel="noopener">TUM Chair of Space Mobility and Propulsion</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+  <footer class="footer">
+    <div class="wrap">
+      <span class="links"><a href="mailto:omarshoukri@gmail.com">Email</a> &middot; <a href="https://www.linkedin.com/in/omarelsherbinyyy/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="assets/docs/cv.pdf">CV</a></span>
+      <div class="title-block">
+        <div>Drawn by<b>O. Elsherbiny</b></div>
+        <div>Dwg no.<b>OE-2026-003</b></div>
+        <div>Sheet<b>3 / 7</b></div>
+        <div>Location<b>Munich, DE</b></div>
+        <div>&copy;<b><span id="year">2026</span></b></div>
+      </div>
+    </div>
+  </footer>
+  <div class="modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel"></div>
+  </div>
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/mission.js"></script>
+  <script src="assets/js/cursor-grid.js"></script>
+  <script src="assets/js/phone-gallery.js"></script>
+</body>
+</html>

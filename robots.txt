@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://omarelsherbinyyy.github.io/sitemap.xml
