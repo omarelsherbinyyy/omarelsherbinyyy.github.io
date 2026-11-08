@@ -1,0 +1,22 @@
+/* v5 add-on (revertable): v2 sheet frame, title block and IBM Plex fonts. Remove by setting FRAME = False in build_v5.py */
+:root {
+  --font-head: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+html::before { display: block !important; border-color: #fff; }
+body::after { display: block !important; border-color: #151515; outline-color: #151515; }
+h1, h2, h3, h4 { font-weight: 600; letter-spacing: -.005em; line-height: 1.05; }
+h3 { font-family: var(--font-head); }
+.hero h1 { font-size: clamp(3rem, 8vw, 6.4rem); line-height: .92; }
+.card-body h3 { font-family: var(--font-head); font-size: 1.3rem; }
+.nav { margin: 0 17px; border-bottom: 1px solid #151515; }
+.hero { margin: 0 17px; }
+.footer { margin: auto 17px 18px; border-top: 1px solid #151515; }
+.footer .wrap { padding-block: 18px 0; align-items: stretch; }
+.title-block { display: grid !important; border-color: #151515; background: #fff; }
+.title-block div { border-color: #151515; }
+.brand { font-family: var(--font-head); text-transform: uppercase; letter-spacing: .04em; font-weight: 600; }
+.btn, .work-tab, .pills span, .chip, .filter-btn { font-family: var(--font-mono); }
+.btn { text-transform: uppercase; letter-spacing: .04em; font-size: .82rem; font-weight: 500; }
+@media (max-width: 600px) { .nav, .hero, .footer { margin-left: 10px; margin-right: 10px; } .footer { margin-bottom: 10px; } }

@@ -1,0 +1,19 @@
+/* Concept v4: v2 layout with the v3 theme. Loads after site.css and v3.css. */
+.hero { margin: 0; border-bottom: 0; min-height: 640px; }
+.hero h1 { font-size: clamp(3.4rem, 9vw, 7.4rem); line-height: .9; letter-spacing: -.015em; }
+.hero h1 span { color: var(--accent); }
+.hero .lead { font-size: 1.2rem; }
+.hero-meta { font-family: var(--font-body); font-size: .95rem; border-top: 1px solid var(--rule); }
+.hero-meta > span { border-bottom: 1px solid var(--rule); }
+.hero-meta b { text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--ink); }
+.hero-meta .dot { background: var(--lime); box-shadow: 0 0 0 3px rgba(198,244,50,.35); }
+.fig-cap { font-family: var(--font-body); text-transform: none; letter-spacing: 0; }
+.badge-figure figcaption { font-family: var(--font-body); text-transform: none; letter-spacing: 0; }
+.eyebrow-row .badge-sm { border-radius: 50%; }
+.section h2 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); }
+.btn-cta { background: var(--accent); border-color: var(--accent); color: #151515; }
+.btn-cta .cta-icon { border-color: #151515; }
+.btn-cta:hover { background: #151515; border-color: #151515; color: #fff; }
+.btn-cta:hover .cta-icon { border-color: #fff; }
+#timeline { scroll-margin-top: 80px; }
+.badge-figure .badge, .badge-figure .badge-lg { border: 0 !important; outline: 0 !important; box-shadow: 0 24px 50px -30px rgba(0,0,0,.45) !important; border-radius: 50% !important; padding: 0 !important; background: transparent !important; }
